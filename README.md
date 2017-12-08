@@ -6,7 +6,7 @@ TemplateProtect is a javascript solution for anyone who wants to protect their c
 *\*Long as the Javascript code is still on the site.*
 ## How do I use it?
 Implementing and using TemplateProtect is very easy.  It takes a few steps to setup, but the rewards are great!
-1. Download the ``templateprotect.min.js`` and upload it to your own webserver.
+1. Download the [templateprotect.js](../master/src/templateprotect.js) or [templateprotect.min.js](../master/src/templateprotect.min.js) and upload it to your own webserver. (Found in the [src](../master/src) directory above)
 2. Add the following code into the ``<head>`` element on your template.
 ```html
   <script src="https://example.com/path/to/templateprotect.min.js"></script>
@@ -45,6 +45,7 @@ Implementing and using TemplateProtect is very easy.  It takes a few steps to se
   </html>`;
 ```
 ## Some Notes
-- JavaScript isn't working via ``<script>`` tags or anything in the ``blockedPage``.
+- CSS can't be used externally via the page. (ex. ``<link rel="stylesheet" href="style.css">``)
+- JavaScript isn't working via ``<script>`` tags or loading it externally. (ex. ``<script src="script.js"></script>``)
 
-Created by BrightSkyz.
+Created by BrightSkyz and released under the [MIT license](../master/LICENSE).
