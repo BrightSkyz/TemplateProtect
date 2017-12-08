@@ -5,7 +5,7 @@
  */
  
 /* Change the blockedHosts array to the host(s) you want to be blocked. */
-var blockedHosts = ["example.com", "example.net"];
+var blockedHosts = ["example.com", "example.org", "example.net"];
 /* Change the blockedPage to the page you want to be displayed when the domain is blocked. */
 var blockedPage = `<!DOCTYPE html>
 <html>
@@ -38,25 +38,35 @@ var blockedPage = `<!DOCTYPE html>
 </html>`;
 
 /*
- * Function to strip all the subdomain(s), the port number, the request URI(s), and the protocol.
- * Usage: getDomain(<URI>);
- * Returns: String of the root domain with nothing else.
+ * Function to strip all the the port number, the request URI(s), the protocol, and sub-domain(s) if second parameter is false.
+ * Usage: getDomain(<URI>, <with sub-domain>);
+ * Returns: String of root domain or root domain with sub-domain(s) if enabled.
  */
-function getDomain(url) {
+function getDomain(url, withSubdomain) {
  var domain;
- if (url.indexOf("://") > -1) {
-  domain = url.split('/')[2];
+ if (withSubdomain == true) {
+  if (url.indexOf("://") > -1) {
+   domain = url.split('/')[2];
+  } else {
+   domain = url.split('/')[0];
+  }
+  domain = domain.split(':')[0];
+  domain = domain.split('?')[0];
  } else {
-  domain = url.split('/')[0];
- }
- domain = domain.split(':')[0];
- domain = domain.split('?')[0];
- var splitArr = domain.split('.');
- var arrLen = splitArr.length;
- if (arrLen > 2) {
-  domain = splitArr[arrLen - 2] + '.' + splitArr[arrLen - 1];
-  if (splitArr[arrLen - 1].length == 2 && splitArr[arrLen - 1].length == 2) {
-   domain = splitArr[arrLen - 3] + '.' + domain;
+  if (url.indexOf("://") > -1) {
+   domain = url.split('/')[2];
+  } else {
+   domain = url.split('/')[0];
+  }
+  domain = domain.split(':')[0];
+  domain = domain.split('?')[0];
+  var splitArr = domain.split('.');
+  var arrLen = splitArr.length;
+  if (arrLen > 2) {
+   domain = splitArr[arrLen - 2] + '.' + splitArr[arrLen - 1];
+   if (splitArr[arrLen - 1].length == 2 && splitArr[arrLen - 1].length == 2) {
+    domain = splitArr[arrLen - 3] + '.' + domain;
+   }
   }
  }
  return domain;
@@ -69,7 +79,7 @@ function getDomain(url) {
  */
 Array.prototype.contains = function(obj) {
  var arrayLength = this.length;
- while (arrayLength = arrayLength - 1) {
+ while (arrayLength--) {
   if (this[arrayLength] === obj) {
    return true;
   }
@@ -78,12 +88,12 @@ Array.prototype.contains = function(obj) {
 }
 
 /*
- * On page load, check to see if the current domain (currentDomain) is listed in the blockedHostnames array.
+ * On page load, check to see if the current domain/subdomain, that is run through the getDomain() function, is listed in the blockedHosts array.
  * If it is, then replace the page with the HTML in the blockedPage variable, otherwise do nothing.
  */
 window.onload = function() {
- var currentDomain = getDomain(window.location.href);
- if (blockedHosts.contains(currentDomain)) {
+ var currentURI = window.location.href;
+ if (blockedHosts.contains(getDomain(window.location.href, false)) || blockedHosts.contains(getDomain(window.location.href, true))) {
   document.open('text/html');
   document.write(blockedPage);
  }
