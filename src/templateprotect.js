@@ -7,35 +7,35 @@
 /* Change the blockedHosts array to the host(s) you want to be blocked. */
 var blockedHosts = ["example.com", "example.org", "example.net"];
 /* Change the blockedPage to the page you want to be displayed when the domain is blocked. */
-var blockedPage = `<!DOCTYPE html>
-<html>
-  <head>
-    <title>Site Blocked</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-      @import url('https://fonts.googleapis.com/css?family=Lato:700|Open+Sans:300');
-      body {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        text-align: center;
-      }
-      h1, h2, h3 {
-        font-family: 'Lato', sans-serif;
-      }
-      h4, h5, h6, p, a {
-        font-family: 'Open Sans', sans-serif;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Site Blocked</h1>
-    <p>The site you are trying to access has been blocked by the developer.</p>
-  </body>
-</html>`;
+var blockedPage = '<!DOCTYPE html>'+
+'<html>'+
+'<head>'+
+'<title>Site Blocked</title>'+
+'<meta charset="utf-8">'+
+'<meta http-equiv="X-UA-Compatible" content="IE=edge">'+
+'<meta name="viewport" content="width=device-width, initial-scale=1">'+
+'<style>'+
+'@import url(\'https://fonts.googleapis.com/css?family=Lato:700|Open+Sans:300\');'+
+'body {'+
+'position: absolute;'+
+'top: 50%;'+
+'left: 50%;'+
+'transform: translateX(-50%) translateY(-50%);'+
+'text-align: center;'+
+'}'+
+'h1, h2, h3 {'+
+'font-family: \'Lato\', sans-serif;'+
+'}'+
+'h4, h5, h6, p, a {'+
+'font-family: \'Open Sans\', sans-serif;'+
+'}'+
+'</style>'+
+'</head>'+
+'<body>'+
+'<h1>Site Blocked</h1>'+
+'<p>The site you are trying to access has been blocked by the developer.</p>'+
+'</body>'+
+'</html>';
 
 /*
  * Function to strip all the the port number, the request URI(s), the protocol, and sub-domain(s) if second parameter is false.
