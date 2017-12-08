@@ -3,7 +3,7 @@ A javascript solution to implement into templates to block certain domains from 
 ## What is this?
 TemplateProtect is a javascript solution for anyone who wants to protect their code.  If you have a paid template and it gets leaked, make sure you have this impletemented.  Then whenever someone uses the leaked version, you can add their domain to the blocked domains list and their site will become unusable.*
 
-*\*Long as the Javascript code is still on the site.
+*\*Long as the Javascript code is still on the site.*
 ## How do I use it?
 Implementing and using TemplateProtect is very easy.  It takes a few steps to setup, but the rewards are great!
 1. Download the ``templateprotect.min.js`` and upload it to your own webserver.
