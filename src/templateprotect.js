@@ -43,23 +43,23 @@ var blockedPage = `<!DOCTYPE html>
  * Returns: String of the root domain with nothing else.
  */
 function getDomain(url) {
-    var domain;
-    if (url.indexOf("://") > -1) {
-        domain = url.split('/')[2];
-    } else {
-        domain = url.split('/')[0];
-    }
-    domain = domain.split(':')[0];
-    domain = domain.split('?')[0];
-    var splitArr = domain.split('.');
-    var arrLen = splitArr.length;
-    if (arrLen > 2) {
-        domain = splitArr[arrLen - 2] + '.' + splitArr[arrLen - 1];
-        if (splitArr[arrLen - 1].length == 2 && splitArr[arrLen - 1].length == 2) {
-            domain = splitArr[arrLen - 3] + '.' + domain;
-        }
-    }
-    return domain;
+ var domain;
+ if (url.indexOf("://") > -1) {
+  domain = url.split('/')[2];
+ } else {
+  domain = url.split('/')[0];
+ }
+ domain = domain.split(':')[0];
+ domain = domain.split('?')[0];
+ var splitArr = domain.split('.');
+ var arrLen = splitArr.length;
+ if (arrLen > 2) {
+  domain = splitArr[arrLen - 2] + '.' + splitArr[arrLen - 1];
+  if (splitArr[arrLen - 1].length == 2 && splitArr[arrLen - 1].length == 2) {
+   domain = splitArr[arrLen - 3] + '.' + domain;
+  }
+ }
+ return domain;
 }
 
 /*
@@ -68,13 +68,13 @@ function getDomain(url) {
  * Returns: True on match, false if there is no match.
  */
 Array.prototype.contains = function(obj) {
-    var arrayLength = this.length;
-    while (arrayLength = arrayLength - 1) {
-        if (this[arrayLength] === obj) {
-            return true;
-        }
-    }
-    return false;
+ var arrayLength = this.length;
+ while (arrayLength = arrayLength - 1) {
+  if (this[arrayLength] === obj) {
+   return true;
+  }
+ }
+ return false;
 }
 
 /*
@@ -82,9 +82,9 @@ Array.prototype.contains = function(obj) {
  * If it is, then replace the page with the HTML in the blockedPage variable, otherwise do nothing.
  */
 window.onload = function() {
-    var currentDomain = getDomain(window.location.href);
-    if (blockedHosts.contains(currentDomain)) {
-        document.open('text/html');
-        document.write(blockedPage)
-    }
+ var currentDomain = getDomain(window.location.href);
+ if (blockedHosts.contains(currentDomain)) {
+  document.open('text/html');
+  document.write(blockedPage);
+ }
 }
