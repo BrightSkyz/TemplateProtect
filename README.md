@@ -13,8 +13,8 @@ Implementing and using TemplateProtect is very easy.  It takes a few steps to se
 ```
 3. Customize the ``templateprotect[.min].js`` to your liking with the variables supplied at the top of the page.
 ```javascript
-  var blockedURLs=["example.com","example.net"];
-  var blockedPage=`<!DOCTYPE html>
+  var blockedURLs = ["example.com", "example.net"];
+  var blockedPage = `<!DOCTYPE html>
   <html>
     <head>
       <title>Site Blocked</title>
